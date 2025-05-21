@@ -1,0 +1,40 @@
+/* Estilos para la sección landing de index.html */
+
+.landing {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.landing h2 {
+  font-family: var(--font-title, 'Cinzel', serif);
+  font-size: 3rem;
+  margin-bottom: 10px;
+  color: #eee;
+}
+
+.landing p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  max-width: 400px;
+  color: #bbb;
+}
+
+.landing button {
+  background-color: var(--accent, #b22222);
+  color: #eee;
+  border: none;
+  padding: 12px 30px;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: var(--radius, 8px);
+  transition: background-color 0.3s;
+}
+
+.landing button:hover {
+  background-color: var(--accent-dark, #7f1515);
+}

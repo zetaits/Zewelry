@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>View Cart - Zewelry</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Montserrat&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <header>
+    <a href="index.html" class="logo-link"><h1>Zewelry</h1></a>
+    <nav>
+      <a href="shop.html">Shop</a>
+    </nav>
+    <div style="display: flex; align-items: center;">
+      <button class="cart-btn" onclick="toggleCart()">🛒</button>
+    </div>
+  </header>
+
+  <div id="cartContainer"></div>
+
+  <main>
+    <section class="landing" style="align-items: flex-start; padding-top: 40px;">
+      <h2>Your Cart</h2>
+      <div id="cartList" style="width:100%;max-width:700px;margin:30px auto 0 auto;"></div>
+      <div id="cartTotal" class="cart-total" style="text-align:right;"></div>
+      <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px;">
+        <button onclick="alert('Checkout not implemented yet')">Checkout</button>
+        <button onclick="window.location.href='shop.html'">Continue Shopping</button>
+      </div>
+    </section>
+  </main>
+  <div id="footerContainer"></div>
+  <script src="main.js"></script>
+  <script>
+    fetch('footer.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('footerContainer').innerHTML = html;
+      });
+
+    function changeQuantity(id, delta) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const idx = cart.findIndex(item => item.id === id);
+      if (idx !== -1) {
+        cart[idx].quantity += delta;
+        if (cart[idx].quantity < 1) cart[idx].quantity = 1;
+        if (cart[idx].quantity > 99) cart[idx].quantity = 99;
+        localStorage.setItem('cart', JSON.stringify(cart));
+        if (window.cart) window.cart = cart;
+      }
+      if (typeof updateCartUI === 'function') updateCartUI();
+      renderCartList(); // Esto SIEMPRE actualiza el subtotal y el total de cada producto
+    }
+
+    function removeFromCart(id) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart = cart.filter(item => item.id !== id);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      if (window.cart) window.cart = cart;
+      if (typeof updateCartUI === 'function') updateCartUI();
+      renderCartList();
+    }
+
+    function renderCartList() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const cartList = document.getElementById('cartList');
+      const cartTotal = document.getElementById('cartTotal');
+      cartList.innerHTML = '';
+      let total = 0;
+
+      if (cart.length === 0) {
+        cartList.innerHTML = '<p>Your cart is empty.</p>';
+        if (cartTotal) cartTotal.textContent = '';
+        return;
+      }
+
+      // Table for cart items
+      const table = document.createElement('table');
+      table.style.width = '110%';
+      table.style.borderCollapse = 'collapse';
+      table.style.tableLayout = 'fixed';
+      table.innerHTML = `
+        <colgroup>
+          <col style="width: 16%;">
+          <col style="width: 38%;">
+          <col style="width: 28%;">
+          <col style="width: 14%;">
+          <col style="width: 4%;">
+        </colgroup>
+        <thead>
+          <tr style="border-bottom:1px solid #333;">
+            <th style="padding:8px 0;color:#eee;"></th>
+            <th style="text-align:left;padding:8px 0;color:#eee;">Product</th>
+            <th style="text-align:center;padding:8px 0;color:#eee;">Quantity</th>
+            <th style="text-align:right;padding:8px 0;color:#eee;">Total</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      `;
+      const tbody = table.querySelector('tbody');
+
+      // Product images by id (match with shop.html)
+      const productImages = {
+        1: 'assets/ring-1.png',
+        2: 'assets/ring-2.png',
+        3: 'assets/ring-3.png'
+      };
+
+      cart.forEach(item => {
+        total += item.price * item.quantity;
+        const tr = document.createElement('tr');
+        tr.setAttribute('data-id', item.id);
+        tr.style.borderBottom = '1px solid #333';
+
+        tr.innerHTML = `
+          <td style="padding:8px 0; text-align:center;">
+            <img src="${productImages[item.id] || ''}" alt="${item.name}" style="width:56px;height:56px;object-fit:cover;border-radius:6px;background:#222;">
+          </td>
+          <td style="padding:12px 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
+            <strong>${item.name}</strong>
+            <div style="font-size:0.95rem;color:#aaa;">${item.price.toFixed(2)} € each</div>
+          </td>
+          <td style="text-align:center;">
+            <button style="background:none;border:none;color:#b22222;font-size:1.2rem;width:28px;height:28px;cursor:pointer;margin-right:6px;" aria-label="Decrease quantity" onclick="changeQuantity(${item.id}, -1)">-</button>
+            <span class="product-quantity" style="min-width:32px;display:inline-block;text-align:center;">${item.quantity}</span>
+            <button style="background:none;border:none;color:#b22222;font-size:1.2rem;width:28px;height:28px;cursor:pointer;margin-left:6px;" aria-label="Increase quantity" onclick="changeQuantity(${item.id}, 1)">+</button>
+          </td>
+          <td class="product-total" style="text-align:right;font-weight:600;color:#b22222;">${(item.price * item.quantity).toFixed(2)} €</td>
+          <td style="text-align:right;">
+            <button style="background:none;border:none;color:#b22222;font-size:1.2rem;cursor:pointer;" aria-label="Remove" onclick="removeFromCart(${item.id});">&times;</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      cartList.appendChild(table);
+      if (cartTotal) cartTotal.textContent = 'Total: ' + total.toFixed(2) + ' €';
+    }
+
+    // Ensure cart modal works on this page
+    fetch('cart.html')
+      .then(response => response.text())
+      .then(html => {
+        document.getElementById('cartContainer').innerHTML = html;
+      });
+
+    // Render cart list on load
+    window.addEventListener('DOMContentLoaded', renderCartList);
+  </script>
+</body>
+</html>

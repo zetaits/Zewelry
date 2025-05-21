@@ -1,0 +1,30 @@
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 40px;
+  background-color: var(--header-bg);
+  border-bottom: 1px solid var(--header-border);
+  position: relative;
+  z-index: 10;
+}
+header h1 {
+  font-family: var(--font-title);
+  font-weight: 600;
+  font-size: 2rem;
+  color: #eee;
+}
+nav a {
+  color: #ccc;
+  text-decoration: none;
+  margin-right: 20px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+nav a:hover {
+  color: var(--accent);
+}
+.logo-link {
+  text-decoration: none;
+}

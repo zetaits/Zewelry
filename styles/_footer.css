@@ -1,0 +1,26 @@
+.main-footer {
+  background: var(--footer-bg);
+  color: #bbb;
+  padding: 24px 0 18px 0;
+  text-align: center;
+  border-top: 1px solid var(--footer-border);
+  margin-top: 40px;
+  font-size: 1rem;
+}
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+.footer-social a {
+  color: var(--accent);
+  text-decoration: none;
+  margin: 0 4px;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+.footer-social a:hover {
+  color: #fff;
+}
