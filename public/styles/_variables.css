@@ -1,0 +1,20 @@
+:root {
+  --main-bg: #18141c;
+  --main-fg: #ddd;
+  --accent: #b22222;
+  --accent-dark: #7f1515;
+  --header-bg: #000;
+  --header-border: #333;
+  --card-bg: #1a1a1a;
+  --footer-bg: #181818;
+  --footer-border: #222;
+  --radius: 8px;
+  --shadow: 0 4px 32px #000a, 0 1.5px 0 #b2222240;
+  --shadow-hover: 0 8px 32px #b2222270;
+  --font-main: 'Montserrat', sans-serif;
+  --font-title: 'Cinzel', serif;
+  --surface: #232026;
+  --surface-light: #2d2933;
+  --text-main: #eee;
+  --text-muted: #bbb;
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment Successful - Zewelry</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Montserrat&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <header>
+    <a href="index.html" class="logo-link"><h1>Zewelry</h1></a>
+    <nav>
+      <a href="shop.html">Shop</a>
+    </nav>
+    <div style="display: flex; align-items: center;">
+      <button class="cart-btn" onclick="toggleCart()">🛒</button>
+    </div>
+  </header>
+
+  <div id="cartContainer"></div>
+
+  <section class="landing gothic-success-section" style="text-align:center; margin-top:60px;">
+    <h2>Thank you for your purchase!</h2>
+    <p>Your payment was successful.</p>
+    <button class="gothic-btn" onclick="location.href='shop.html'">Continue Shopping</button>
+  </section>
+
+  <div id="footerContainer"></div>
+  <script src="main.js"></script>
+  <script>
+    localStorage.removeItem('cart');
+    fetch('footer.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('footerContainer').innerHTML = html;
+      });
+  </script>
+</body>
+</html>
