@@ -1,4 +1,18 @@
 @media (max-width: 768px) {
+  /* General responsive image rule */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Adjustments for gothic utility classes on mobile */
+  .gothic-landing, .gothic-cart-section, .gothic-success-section {
+    margin-top: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+    /* Note: .landing specific styles will override padding for that section */
+  }
+
   .products-grid {
     padding: 10px;
     gap: 10px;
@@ -17,12 +31,59 @@
     padding: 12px 18px;
     font-size: 1rem;
   }
-  .landing button {
-    padding: 14px 18px;
-    font-size: 1rem;
+  /* Rules from _landing.css */
+  .landing {
+    padding: 32px 6vw;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .landing h2 {
+    font-size: 2rem; /* Reduced from 2.1rem for better mobile display */
+  }
+  .landing p {
+    font-size: 1.05rem;
+  }
+  .landing button { /* This rule replaces the previous .landing button rule */
+    width: 100%;
+    font-size: 1.1rem;
+    padding: 14px 0;
+    margin-top: 18px;
   }
   .main-footer {
-    font-size: 0.95rem;
-    padding: 18px 0 12px 0;
+    font-size: 0.95rem; /* Existing, verified */
+    padding: 15px 0 10px 0; /* Updated padding */
+  }
+
+  .footer-content {
+    gap: 5px; /* Adjusted gap for mobile */
+  }
+
+  .footer-social a {
+    font-size: 0.9rem; /* Adjusted font size for social links */
+    margin: 0 4px; /* Kept existing margin as per instruction */
+  }
+
+  /* Header responsive styles */
+  header {
+    padding: 15px 20px;
+  }
+
+  header .logo-link h1 {
+    font-size: 1.5rem;
+  }
+
+  header nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  header nav a {
+    font-size: 1rem;
+    margin: 5px 0;
+  }
+
+  .cart-btn {
+    padding: 8px 10px;
+    font-size: 1.2rem;
   }
 }
