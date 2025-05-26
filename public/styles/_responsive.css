@@ -16,23 +16,29 @@
   .products-grid {
     padding: 10px; /* Existing, verified */
     gap: 10px; /* Existing, verified */
-    grid-template-columns: repeat(3, 1fr); /* Explicit 3-column layout for mobile */
+    grid-template-columns: repeat(2, 1fr); /* Updated to 2-column layout for mobile */
   }
   .product-info {
-    min-height: 100px; /* Existing, kept for now */
-    padding: 8px; /* Reduced padding for narrower cards */
+    padding: 8px; /* Padding kept for 2-column layout */
+    /* min-height: 100px; Removed to allow content to define height */
   }
 
-  /* Product info text adjustments for 3-column layout */
+  /* Product info text adjustments for 2-column layout */
   .product-info h3 {
-    font-size: 0.9rem; /* Reduced from desktop's 1.4rem */
+    font-size: 0.9rem; /* Kept from previous mobile adjustment */
     margin-bottom: 5px; /* Reduced from desktop's 10px */
   }
 
   .product-info p {
-    font-size: 0.8rem; /* Reduced from desktop's 0.95rem */
-    margin-bottom: 8px; /* Reduced from desktop's 14px */
-    line-height: 1.3; /* Adjusted from desktop's 1.4 */
+    font-size: 0.8rem; /* Kept from previous mobile adjustment */
+    margin-bottom: 8px; /* Kept from previous mobile adjustment */
+    line-height: 1.3; /* Kept from previous mobile adjustment */
+    overflow: hidden; /* Added for line clamping */
+    text-overflow: ellipsis; /* Added for line clamping */
+    display: -webkit-box; /* Added for line clamping */
+    -webkit-line-clamp: 2; /* Show 2 lines */
+    -webkit-box-orient: vertical; /* Added for line clamping */
+    height: calc(0.8rem * 1.3 * 2); /* font-size * line-height * number of lines */
   }
 
   .product-card,
@@ -41,10 +47,10 @@
     box-shadow: 0 1px 8px #0007;
   }
 
-  /* Adjust product image height for mobile 3-column layout */
+  /* Adjust product image height for mobile 2-column layout */
   .product-card .product-image,
   .gothic-product-card .product-image {
-    min-height: 140px; /* Significantly reduced from desktop's 320px */
+    height: 160px; /* Changed from min-height: 140px for 2-column layout */
     /* object-fit: cover; is expected to be inherited from _shop.css */
   }
 
@@ -54,12 +60,12 @@
     font-size: 1rem; /* General rule, kept for other .gothic-btn uses */
   }
 
-  /* Specific button styling for product cards in 3-column mobile layout */
+  /* Specific button styling for product cards in 2-column mobile layout */
   .product-card .details-btn, 
   .gothic-product-card .details-btn {
-    padding: 8px 10px;
-    font-size: 0.8rem;
-    margin-top: 10px; /* Adjusted from desktop's 18px */
+    padding: 8px 10px; /* Kept from previous mobile adjustment */
+    font-size: 0.8rem; /* Kept from previous mobile adjustment */
+    margin-top: 10px; /* Kept from previous mobile adjustment */
   }
 
   /* Rules from _landing.css */
