@@ -81,10 +81,18 @@ function updateCartUI() {
     total += item.price * item.quantity;
     const itemDiv = document.createElement('div');
     itemDiv.className = 'cart-item';
+    itemDiv.style.flexWrap = 'nowrap';
+    // Trunca solo el nombre, nunca la cantidad
+    const maxLen = 16;
+    let displayName = item.name;
+    if (item.name.length > maxLen) {
+      displayName = item.name.slice(0, maxLen) + '...';
+    }
     itemDiv.innerHTML = `
-      <span>${item.name} x${item.quantity}</span>
-      <span>${(item.price * item.quantity).toFixed(2)} €</span>
-      <button data-id="${item.id}" aria-label="Remove product">×</button>
+      <span class="cart-item-name" title="${item.name}">${displayName}</span>
+      <span class="cart-item-qty">x${item.quantity}</span>
+      <span style="white-space:nowrap;">${(item.price * item.quantity).toFixed(2)} €</span>
+      <button class="cart-remove-btn" data-id="${item.id}" aria-label="Remove product">×</button>
     `;
     cartItemsContainer.appendChild(itemDiv);
   });

@@ -25,13 +25,16 @@
   <div id="cartContainer"></div>
 
   <main>
-    <section class="landing gothic-cart-section" style="align-items: flex-start; padding-top: 40px;">
-      <h2>Your Cart</h2>
-      <div id="cartList" style="width:100%;max-width:700px;margin:30px auto 0 auto;"></div>
-      <div id="cartTotal" class="cart-total" style="text-align:right;"></div>
-      <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px;">
-        <button id="checkoutBtn" class="gothic-btn">Checkout</button>
-        <button class="gothic-btn" onclick="window.location.href='shop.html'">Continue Shopping</button>
+    <section class="cart-section">
+      <div class="cart-card">
+        <h2>Your Cart</h2>
+        <div class="cart-table-wrap">
+          <table class="cart-table" id="cartTable"></table>
+        </div>
+        <div class="cart-actions">
+          <button id="checkoutBtn" class="gothic-btn">Checkout</button>
+          <button class="gothic-btn secondary-btn" onclick="window.location.href='shop.html'">Continue Shopping</button>
+        </div>
       </div>
     </section>
   </main>
@@ -45,6 +48,75 @@
         document.getElementById('footerContainer').innerHTML = html;
       });
 
+    function renderCartTable() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const table = document.getElementById('cartTable');
+      table.innerHTML = '';
+      let total = 0;
+
+      if (cart.length === 0) {
+        table.innerHTML = `<tr><td colspan="6" class="cart-empty-msg">Your cart is empty.</td></tr>`;
+        return;
+      }
+
+      table.innerHTML = `
+        <thead>
+          <tr>
+            <th></th>
+            <th>Product</th>
+            <th class="hide-mobile">Price</th>
+            <th style="text-align:center;">Quantity</th>
+            <th style="text-align:right;">Total</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      `;
+      const tbody = table.querySelector('tbody');
+
+      cart.forEach(item => {
+        total += item.price * item.quantity;
+        let imgSrc = '';
+        if (window.products) {
+          const prod = window.products.find(p => p.id === item.id);
+          imgSrc = prod && prod.images && prod.images[0] ? prod.images[0] : '';
+        }
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>
+            <img src="${imgSrc}" alt="${item.name}" class="cart-img">
+          </td>
+          <td>
+            <strong>${item.name}</strong>
+            <div class="cart-product-price-mobile">${item.price.toFixed(2)} €</div>
+          </td>
+          <td class="hide-mobile" style="text-align:center;">
+            ${item.price.toFixed(2)} €
+          </td>
+          <td style="text-align:center;">
+            <button class="cart-qty-btn" aria-label="Decrease quantity" onclick="changeQuantity(${item.id}, -1)">-</button>
+            <span class="cart-qty">${item.quantity}</span>
+            <button class="cart-qty-btn" aria-label="Increase quantity" onclick="changeQuantity(${item.id}, 1)">+</button>
+          </td>
+          <td style="text-align:right;">
+            ${(item.price * item.quantity).toFixed(2)} €
+          </td>
+          <td style="text-align:center;">
+            <button class="cart-remove-btn" aria-label="Remove" onclick="removeFromCart(${item.id});">&times;</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      const totalRow = document.createElement('tr');
+      totalRow.className = 'cart-total-row';
+      totalRow.innerHTML = `
+        <td colspan="3"></td>
+        <td colspan="3" style="text-align:right;font-weight:800;">Total: ${total.toFixed(2)} €</td>
+      `;
+      tbody.appendChild(totalRow);
+    }
+
     function changeQuantity(id, delta) {
       let cart = JSON.parse(localStorage.getItem('cart')) || [];
       const idx = cart.findIndex(item => item.id === id);
@@ -56,7 +128,7 @@
         if (window.cart) window.cart = cart;
       }
       if (typeof updateCartUI === 'function') updateCartUI();
-      renderCartList(); // Esto SIEMPRE actualiza el subtotal y el total de cada producto
+      renderCartTable();
     }
 
     function removeFromCart(id) {
@@ -65,91 +137,10 @@
       localStorage.setItem('cart', JSON.stringify(cart));
       if (window.cart) window.cart = cart;
       if (typeof updateCartUI === 'function') updateCartUI();
-      renderCartList();
+      renderCartTable();
     }
 
-    function renderCartList() {
-      const cart = JSON.parse(localStorage.getItem('cart')) || [];
-      const cartList = document.getElementById('cartList');
-      const cartTotal = document.getElementById('cartTotal');
-      cartList.innerHTML = '';
-      let total = 0;
-
-      if (cart.length === 0) {
-        cartList.innerHTML = '<p>Your cart is empty.</p>';
-        if (cartTotal) cartTotal.textContent = '';
-        return;
-      }
-
-      const table = document.createElement('table');
-      table.style.width = '110%';
-      table.style.borderCollapse = 'collapse';
-      table.style.tableLayout = 'fixed';
-      table.innerHTML = `
-        <colgroup>
-          <col style="width: 16%;">
-          <col style="width: 38%;">
-          <col style="width: 28%;">
-          <col style="width: 14%;">
-          <col style="width: 4%;">
-        </colgroup>
-        <thead>
-          <tr style="border-bottom:1px solid #333;">
-            <th style="padding:8px 0;color:#eee;"></th>
-            <th style="text-align:left;padding:8px 0;color:#eee;">Product</th>
-            <th style="text-align:center;padding:8px 0;color:#eee;">Quantity</th>
-            <th style="text-align:right;padding:8px 0;color:#eee;">Total</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      `;
-      const tbody = table.querySelector('tbody');
-
-      cart.forEach(item => {
-        total += item.price * item.quantity;
-        // Busca la imagen del producto usando el array global products
-        let imgSrc = '';
-        if (window.products) {
-          const prod = window.products.find(p => p.id === item.id);
-          imgSrc = prod && prod.images && prod.images[0] ? prod.images[0] : '';
-        }
-        const tr = document.createElement('tr');
-        tr.setAttribute('data-id', item.id);
-        tr.style.borderBottom = '1px solid #333';
-
-        tr.innerHTML = `
-          <td style="padding:8px 0; text-align:center;">
-            <img src="${imgSrc}" alt="${item.name}" style="width:56px;height:56px;object-fit:cover;border-radius:6px;background:#222;">
-          </td>
-          <td style="padding:12px 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
-            <strong>${item.name}</strong>
-            <div style="font-size:0.95rem;color:#aaa;">${item.price.toFixed(2)} € each</div>
-          </td>
-          <td style="text-align:center;">
-            <button style="background:none;border:none;color:#b22222;font-size:1.2rem;width:28px;height:28px;cursor:pointer;margin-right:6px;" aria-label="Decrease quantity" onclick="changeQuantity(${item.id}, -1)">-</button>
-            <span class="product-quantity" style="min-width:32px;display:inline-block;text-align:center;">${item.quantity}</span>
-            <button style="background:none;border:none;color:#b22222;font-size:1.2rem;width:28px;height:28px;cursor:pointer;margin-left:6px;" aria-label="Increase quantity" onclick="changeQuantity(${item.id}, 1)">+</button>
-          </td>
-          <td class="product-total" style="text-align:right;font-weight:600;color:#b22222;">${(item.price * item.quantity).toFixed(2)} €</td>
-          <td style="text-align:right;">
-            <button style="background:none;border:none;color:#b22222;font-size:1.2rem;cursor:pointer;" aria-label="Remove" onclick="removeFromCart(${item.id});">&times;</button>
-          </td>
-        `;
-        tbody.appendChild(tr);
-      });
-
-      cartList.appendChild(table);
-      if (cartTotal) cartTotal.textContent = 'Total: ' + total.toFixed(2) + ' €';
-    }
-
-    fetch('cart.html')
-      .then(response => response.text())
-      .then(html => {
-        document.getElementById('cartContainer').innerHTML = html;
-      });
-
-    window.addEventListener('DOMContentLoaded', renderCartList);
+    window.addEventListener('DOMContentLoaded', renderCartTable);
 
     document.getElementById('checkoutBtn').onclick = async function() {
       const cart = JSON.parse(localStorage.getItem('cart')) || [];
