@@ -83,9 +83,9 @@
   background: linear-gradient(90deg, var(--accent) 60%, var(--accent-dark) 100%);
   color: #fff;
   border: none;
-  padding: 14px 32px;
+  padding: 8px 18px;
   font-weight: 800;
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   font-family: var(--font-title);
   border-radius: 10px;
   margin-top: 8px;
@@ -94,6 +94,8 @@
   outline: none;
   cursor: pointer;
   align-self: flex-end;
+  min-width: 0;
+  white-space: nowrap;
 }
 .cart-modal button:hover,
 .cart-modal .gothic-btn:hover {
