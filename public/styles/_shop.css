@@ -1,0 +1,114 @@
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 60px 40px;
+  background-color: var(--main-bg);
+  min-height: 80vh;
+  align-items: stretch;
+}
+
+.product-card,
+.gothic-product-card {
+  background: var(--surface, #1e1c1f);
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.3s ease;
+  border: 2px solid transparent;
+  position: relative;
+}
+
+.product-card:hover,
+.gothic-product-card:hover {
+  transform: translateY(-4px) rotate(-0.3deg);
+  box-shadow: 0 12px 48px rgba(178, 34, 34, 0.35), 0 3px 0 rgba(255, 255, 255, 0.15);
+  border-color: var(--accent);
+  z-index: 3;
+}
+
+.product-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  background-color: #191919;
+  filter: brightness(0.95) contrast(1.1);
+  transition: filter 0.3s ease;
+}
+
+.product-card:hover .product-image,
+.gothic-product-card:hover .product-image {
+  filter: brightness(1.05) contrast(1.05);
+}
+
+.product-info {
+  padding: 15px;
+  color: #cfcfcf;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+
+.product-info h3 {
+  font-family: var(--font-title);
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  color: #f2f2f2;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.product-info p {
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+  color: #999;
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  height: calc(0.9rem * 1.3 * 3);
+}
+
+.product-info .price {
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: var(--accent);
+  letter-spacing: 0.6px;
+  margin-top: auto;
+}
+
+.details-btn {
+  background: linear-gradient(90deg, var(--accent) 0%, var(--accent-dark) 100%);
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  font-weight: 900;
+  font-size: 0.9rem;
+  font-family: var(--font-title, 'Cinzel', serif);
+  border-radius: 12px;
+  margin-top: 12px;
+  align-self: flex-start;
+  margin-bottom: 0;
+  box-shadow: 0 6px 32px rgba(178, 34, 34, 0.35), 0 2px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  letter-spacing: 1.4px;
+  outline: none;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.details-btn:hover {
+  background: linear-gradient(90deg, var(--accent-dark) 20%, var(--accent) 80%);
+  transform: scale(1.06) translateY(-2px);
+  box-shadow: 0 10px 40px rgba(178, 34, 34, 0.45), 0 2px 0 rgba(255, 255, 255, 0.2);
+}
+
+.details-btn:active {
+  transform: scale(0.96);
+}
