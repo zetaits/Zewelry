@@ -67,10 +67,17 @@
   box-shadow: 0 0 24px #000a;
   margin: 0 10px;
   cursor: zoom-in;
-  transition: box-shadow 0.2s, transform 0.2s;
+  transition: box-shadow 0.2s, transform 0.2s, opacity 0.4s;
+  opacity: 0;
+  /* Skeleton effect while loading */
+  background: linear-gradient(90deg, #232026 25%, #2d2933 50%, #232026 75%);
+  background-size: 200% 100%;
+  animation: img-skeleton 1.2s infinite linear;
 }
-#mainImage:focus {
-  outline: 2px solid var(--accent);
+#mainImage.loaded {
+  opacity: 1;
+  animation: none;
+  background: #222;
 }
 
 .product-detail-thumbnail-gallery {
@@ -88,18 +95,29 @@
   border-radius: 7px;
   border: 2px solid transparent;
   opacity: 0.7;
-  transition: all 0.2s;
+  transition: all 0.2s, opacity 0.4s;
   cursor: pointer;
   background: var(--surface-light);
   box-shadow: 0 1px 8px #0005;
+  opacity: 0;
+  /* Skeleton effect while loading */
+  background: linear-gradient(90deg, #232026 25%, #2d2933 50%, #232026 75%);
+  background-size: 200% 100%;
+  animation: img-skeleton 1.2s infinite linear;
+}
+.product-detail-thumbnail-gallery img.loaded {
+  opacity: 1;
+  animation: none;
+  background: var(--surface-light);
 }
 
-.product-detail-thumbnail-gallery img.active-thumbnail,
-.product-detail-thumbnail-gallery img:hover {
-  border-color: var(--accent);
-  opacity: 1;
-  transform: scale(1.09) rotate(-2deg);
-  box-shadow: 0 2px 16px #b2222240;
+@keyframes img-skeleton {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 /* Modal de zoom */

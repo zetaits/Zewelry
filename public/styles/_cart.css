@@ -192,6 +192,27 @@
   background: #222;
   display: block;
   margin: 0 auto;
+  opacity: 0;
+  transition: opacity 0.4s;
+  /* Skeleton effect while loading */
+  background: linear-gradient(90deg, #232026 25%, #2d2933 50%, #232026 75%);
+  background-size: 200% 100%;
+  animation: img-skeleton 1.2s infinite linear;
+}
+
+.cart-img.loaded {
+  opacity: 1;
+  animation: none;
+  background: #222;
+}
+
+@keyframes img-skeleton {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
 .cart-qty-btn {
   background: none;

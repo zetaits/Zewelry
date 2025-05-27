@@ -106,6 +106,9 @@
       function updateImage() {
         mainImg.src = product.images[currentImg];
         mainImg.alt = product.name;
+        mainImg.classList.remove('loaded');
+        mainImg.onload = () => mainImg.classList.add('loaded');
+        if (mainImg.complete) mainImg.classList.add('loaded');
         Array.from(gallery.children).forEach((thumb, idx) => {
           thumb.classList.toggle('active-thumbnail', idx === currentImg);
         });
@@ -119,6 +122,9 @@
         const thumb = document.createElement('img');
         thumb.src = img;
         thumb.alt = 'Thumbnail';
+        thumb.className = '';
+        thumb.onload = () => thumb.classList.add('loaded');
+        if (thumb.complete) thumb.classList.add('loaded');
         thumb.onclick = () => {
           currentImg = idx;
           updateImage();
