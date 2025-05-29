@@ -1,0 +1,166 @@
+.hero-3d-brutalist {
+  width: 100vw;
+  min-height: 70vh;
+  background: linear-gradient(120deg, #18141c 60%, #232026 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 64px #000c;
+  border-bottom: 4px solid #b22222;
+  margin-bottom: 0;
+  z-index: 2;
+}
+
+.hero-3d-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+  width: 100%;
+  max-width: 1200px;
+  padding: 60px 5vw 60px 5vw;
+}
+
+.hero-3d-cube {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #19171c;
+  border-radius: 32px;
+  box-shadow: 0 12px 64px #000b, 0 2px 0 #b2222240;
+  padding: 32px;
+  border: 3px solid #b22222;
+  min-width: 340px;
+  min-height: 340px;
+  transition: box-shadow 0.3s;
+}
+
+.hero-3d-cube model-viewer {
+  width: 340px !important;
+  height: 340px !important;
+  border-radius: 18px;
+  background: transparent;
+  box-shadow: none;
+}
+
+.hero-3d-text {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding-left: 36px;
+  max-width: 540px;
+}
+
+.hero-3d-text h2 {
+  font-family: var(--font-title, 'Cinzel', serif);
+  font-size: 3.8rem;
+  color: #fff;
+  letter-spacing: 2px;
+  margin-bottom: 18px;
+  text-shadow: 0 6px 32px #000a, 0 2px 0 #b2222240;
+  line-height: 1.1;
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+.hero-3d-text p {
+  font-size: 1.45rem;
+  color: #bbb;
+  margin-bottom: 38px;
+  max-width: 420px;
+  line-height: 1.6;
+  font-family: var(--font-main, 'Montserrat', sans-serif);
+  text-shadow: 0 2px 8px #000a;
+}
+
+.hero-3d-text .gothic-btn {
+  font-size: 1.35rem;
+  padding: 20px 54px;
+  border-radius: 14px;
+  margin-top: 0;
+  font-weight: 900;
+  letter-spacing: 2px;
+  box-shadow: 0 8px 40px #b2222240, 0 2px 0 #fff1;
+  background: linear-gradient(90deg, #b22222 60%, #7f1515 100%);
+  text-transform: uppercase;
+}
+
+.hero-3d-text .gothic-btn:hover {
+  background: linear-gradient(90deg, #7f1515 40%, #b22222 100%);
+  box-shadow: 0 16px 64px #b2222270, 0 2px 0 #fff2;
+  transform: scale(1.06) translateY(-2px);
+}
+
+@media (max-width: 900px) {
+  .hero-3d-content {
+    flex-direction: column;
+    gap: 32px;
+    padding: 40px 2vw 40px 2vw;
+  }
+  .hero-3d-cube {
+    min-width: 220px;
+    min-height: 220px;
+    padding: 18px;
+  }
+  .hero-3d-cube model-viewer {
+    width: 220px !important;
+    height: 220px !important;
+  }
+  .hero-3d-text {
+    padding-left: 0;
+    align-items: center;
+    text-align: center;
+    max-width: 98vw;
+  }
+  .hero-3d-text h2 {
+    font-size: 2.2rem;
+  }
+  .hero-3d-text p {
+    font-size: 1.1rem;
+  }
+  .hero-3d-text .gothic-btn {
+    font-size: 1.1rem;
+    padding: 14px 28px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-3d-brutalist {
+    min-height: 50vh;
+    border-radius: 0;
+    box-shadow: 0 4px 24px #000a;
+  }
+  .hero-3d-content {
+    padding: 18px 0 18px 0;
+    gap: 18px;
+  }
+  .hero-3d-cube {
+    min-width: 140px;
+    min-height: 140px;
+    padding: 6px;
+    border-radius: 18px;
+  }
+  .hero-3d-cube model-viewer {
+    width: 140px !important;
+    height: 140px !important;
+  }
+  .hero-3d-text h2 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+  }
+  .hero-3d-text p {
+    font-size: 0.95rem;
+    margin-bottom: 18px;
+  }
+  .hero-3d-text .gothic-btn {
+    font-size: 0.95rem;
+    padding: 10px 18px;
+    border-radius: 8px;
+  }
+}

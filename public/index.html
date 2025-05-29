@@ -8,6 +8,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Montserrat&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="styles/_3d-cube.css">
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
   <header>
@@ -24,10 +26,27 @@
 
   <div id="cartContainer"></div>
 
-  <section class="landing gothic-landing">
-    <h2>Refined Darkness</h2>
-    <p>Luxury gothic jewelry forged for unique souls</p>
-    <button class="gothic-btn" onclick="location.href='shop.html'">Discover Zewelry</button>
+  <section class="hero-3d-brutalist">
+    <div class="hero-3d-content">
+      <div class="hero-3d-cube">
+        <model-viewer
+          src="assets/cube.glb"
+          alt="Zewelry 3D Cube"
+          camera-controls
+          auto-rotate
+          shadow-intensity="1"
+          exposure="1"
+          style="width: 340px; height: 340px; background: transparent;"
+          disable-zoom
+          disable-pan
+        ></model-viewer>
+      </div>
+      <div class="hero-3d-text">
+        <h2>Refined Darkness</h2>
+        <p>Luxury gothic jewelry forged for unique souls</p>
+        <button class="gothic-btn" onclick="location.href='shop.html'">Discover Zewelry</button>
+      </div>
+    </div>
   </section>
 
   <div id="footerContainer"></div>
