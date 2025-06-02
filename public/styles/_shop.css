@@ -1,8 +1,8 @@
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  padding: 60px 40px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px; /* Adjusted from 20px */
+  padding: 56px 40px; /* Adjusted 60px to 56px */
   background-color: var(--main-bg);
   min-height: 80vh;
   align-items: stretch;
@@ -13,9 +13,11 @@
   background: var(--glass-bg);
   backdrop-filter: var(--glass-backdrop-blur);
   -webkit-backdrop-filter: var(--glass-backdrop-blur);
-  border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.5); /* Keep existing shadow, review if needed */
-  overflow: hidden; /* Important for backdrop-filter */
+  width: 300px; /* New fixed width */
+  height: 300px; /* Fixed height */
+  border-radius: 16px; /* Fine */
+  box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   cursor: pointer;
@@ -32,20 +34,32 @@
   z-index: 3;
 }
 
+.product-image-wrapper {
+  padding: 16px;
+  height: 200px; /* Fixed height for the wrapper */
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .product-image {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  background-color: var(--surface);
+  max-width: 100%; /* Constrained by wrapper */
+  max-height: 100%; /* Constrained by wrapper */
+  object-fit: contain; /* Changed from cover */
+  background-color: var(--surface); /* Kept for skeleton, can be reviewed */
   filter: brightness(0.95) contrast(1.1);
   transition: filter 0.3s ease, opacity 0.4s;
   opacity: 0;
-  position: relative; /* For pseudo-element positioning */
-  overflow: hidden; /* To contain pseudo-element */
-  /* Skeleton effect while loading */
+  position: relative;
+  overflow: hidden;
+  /* Skeleton effect while loading (remains on img) */
   background: linear-gradient(90deg, var(--surface) 25%, var(--surface-light) 50%, var(--surface) 75%);
   background-size: 200% 100%;
   animation: img-skeleton 1.2s infinite linear;
+  /* Explicitly remove fixed width/height if any were missed */
+  width: auto; 
+  height: auto;
 }
 
 .product-image::after {
@@ -86,7 +100,7 @@
 }
 
 .product-info {
-  padding: 15px;
+  padding: 16px; /* Adjusted from 15px */
   color: var(--text-muted);
   display: flex;
   flex-direction: column;
@@ -96,17 +110,17 @@
 .product-info h3 {
   font-family: var(--font-title);
   font-size: 1.2rem;
-  margin-bottom: 8px;
+  margin-bottom: 8px; /* Fine */
   color: var(--text-main);
-  letter-spacing: 0.5px;
+  letter-spacing: 0.5px; /* Fine */
   text-transform: uppercase;
 }
 
 .product-info p {
   font-size: 0.9rem;
-  margin-bottom: 10px;
+  margin-bottom: 8px; /* Adjusted from 10px */
   color: var(--text-muted);
-  line-height: 1.3;
+  line-height: 1.3; /* Fine */
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -128,14 +142,14 @@
   background: var(--button-primary-bg);
   color: var(--button-primary-text);
   border: none;
-  padding: 12px 24px;
+  padding: 8px 24px; /* Adjusted from 12px */
   font-weight: 900;
   font-size: 0.9rem;
   font-family: var(--font-title, 'Cinzel', serif);
-  border-radius: 12px;
-  margin-top: 12px;
+  border-radius: 8px; /* Adjusted from 12px */
+  margin-top: 16px; /* Adjusted from 12px */
   align-self: flex-start;
-  margin-bottom: 0;
+  margin-bottom: 0; /* Fine */
   box-shadow: var(--shadow);
   transition: all 0.3s ease;
   letter-spacing: 1.4px;

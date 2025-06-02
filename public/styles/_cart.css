@@ -3,7 +3,7 @@
   border: none;
   font-size: 1.6rem;
   color: var(--main-fg);
-  padding: 8px 12px;
+  padding: 8px; /* Adjusted from 8px 12px */
   transition: color 0.3s, transform 0.2s;
   position: relative;
 }
@@ -22,10 +22,10 @@
   color: var(--main-bg); /* For high contrast with new accent */
   font-size: 0.8rem;
   font-weight: bold;
-  border-radius: 50%;
-  padding: 2px 7px;
-  min-width: 22px;
-  min-height: 22px;
+  border-radius: 50%; /* Fine */
+  padding: 2px 6px; /* Adjusted from 2px 7px (rounding 7 to 6 or 8, 6 is closer) */
+  min-width: 22px; /* Fine */
+  min-height: 22px; /* Fine */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -43,10 +43,10 @@
   backdrop-filter: var(--glass-backdrop-blur);
   -webkit-backdrop-filter: var(--glass-backdrop-blur);
   border: 1px solid var(--glass-border-color);
-  box-shadow: 0 0 20px #A8A8A870; /* Keep existing shadow or adjust */
-  padding: 20px;
-  width: 340px;
-  max-width: 95vw;
+  box-shadow: 0 0 20px #A8A8A870;
+  padding: 24px; /* Adjusted from 20px */
+  width: 340px; /* Fine */
+  max-width: 95vw; /* Fine */
   word-break: break-word;
   max-height: 70vh;
   overflow-y: auto;
@@ -70,16 +70,16 @@
 .cart-modal h2 {
   font-family: var(--font-title);
   color: var(--text-main);
-  margin-bottom: 15px;
+  margin-bottom: 16px; /* Adjusted from 15px */
 }
 #cartItems {
   flex-grow: 1;
-  margin-bottom: 10px;
+  margin-bottom: 8px; /* Adjusted from 10px */
 }
 .cart-total {
   font-weight: 700;
   font-size: 1.2rem;
-  margin-bottom: 15px;
+  margin-bottom: 16px; /* Adjusted from 15px */
   text-align: right;
 }
 .cart-modal button,
@@ -87,14 +87,14 @@
   background: var(--button-primary-bg);
   color: var(--button-primary-text);
   border: none;
-  padding: 8px 18px;
+  padding: 8px 16px; /* Adjusted from 8px 18px */
   font-weight: 800;
   font-size: 0.95rem;
   font-family: var(--font-title);
-  border-radius: 10px;
-  margin-top: 8px;
+  border-radius: 8px; /* Adjusted from 10px */
+  margin-top: 8px; /* Fine */
   transition: background 0.3s, transform 0.18s, box-shadow 0.2s;
-  letter-spacing: 1.2px;
+  letter-spacing: 1.2px; /* Fine */
   outline: none;
   cursor: pointer;
   align-self: flex-end;
@@ -144,9 +144,9 @@
   background: var(--main-bg, #18141c);
   border-radius: 18px;
   box-shadow: var(--shadow, 0 4px 32px #000a);
-  max-width: 700px;
+  max-width: 700px; /* Fine */
   width: 100%;
-  padding: 36px 28px 28px 28px;
+  padding: 32px 24px 24px; /* Adjusted from 36px 28px 28px 28px */
   color: var(--text-main, #eee);
   display: flex;
   flex-direction: column;
@@ -155,15 +155,15 @@
 .cart-card h2 {
   font-family: var(--font-title, Cinzel, serif);
   font-size: 2.1rem;
-  margin-bottom: 18px;
+  margin-bottom: 16px; /* Adjusted from 18px */
   color: var(--text-main, #eee);
-  letter-spacing: 1.2px;
+  letter-spacing: 1.2px; /* Fine */
   text-shadow: 0 2px 8px #000a;
 }
 .cart-table-wrap {
   width: 100%;
   overflow-x: auto;
-  margin-bottom: 18px;
+  margin-bottom: 16px; /* Adjusted from 18px */
 }
 .cart-table {
   width: 100%;
@@ -172,7 +172,7 @@
   background: none;
 }
 .cart-table th, .cart-table td {
-  padding: 10px 6px;
+  padding: 8px 8px; /* Adjusted from 10px 6px, making horizontal padding consistent */
   text-align: left;
   font-size: 1rem;
 }
@@ -221,11 +221,11 @@
   border: none;
   color: var(--accent);
   font-size: 1.2rem;
-  width: 28px;
-  height: 28px;
+  width: 24px; /* Adjusted from 28px */
+  height: 24px; /* Adjusted from 28px */
   cursor: pointer;
-  margin: 0 4px;
-  border-radius: 4px;
+  margin: 0 4px; /* Fine for small buttons */
+  border-radius: 4px; /* Fine */
   transition: background 0.2s, color 0.2s;
 }
 .cart-qty-btn:hover {
@@ -246,7 +246,7 @@
   color: var(--main-bg);
 }
 .cart-qty {
-  min-width: 28px;
+  min-width: 24px; /* Adjusted from 28px */
   display: inline-block;
   text-align: center;
   font-weight: 600;
@@ -257,20 +257,20 @@
   font-size: 1.15rem;
   border: none;
   text-align: right;
-  padding-top: 18px;
+  padding-top: 16px; /* Adjusted from 18px */
 }
 .cart-actions {
   display: flex;
-  gap: 12px;
+  gap: 8px; /* Adjusted from 12px */
   justify-content: flex-end;
-  margin-top: 18px;
+  margin-top: 16px; /* Adjusted from 18px */
   width: 100%;
 }
 .cart-empty-msg {
   color: var(--text-muted, #bbb);
   font-size: 1.1rem;
   text-align: center;
-  margin: 32px 0 18px 0;
+  margin: 32px 0 16px 0; /* Adjusted 18px to 16px */
 }
 .secondary-btn {
   background: var(--button-secondary-bg);
@@ -286,7 +286,7 @@
   display: none;
   font-size: 0.97rem;
   color: var(--text-muted, #bbb);
-  margin-top: 2px;
+  margin-top: 0px; /* Adjusted from 2px, or use 8px if more space needed */
 }
 .hide-mobile {
   display: table-cell;
@@ -295,7 +295,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
+  gap: 8px; /* Fine */
   flex-wrap: nowrap;
   white-space: nowrap;
   overflow: hidden;
@@ -312,29 +312,29 @@
 .cart-item-qty {
   color: var(--text-muted, #bbb);
   font-weight: 600;
-  margin-left: 2px;
+  margin-left: 0px; /* Adjusted from 2px */
 }
 
 /* Responsive for cart table */
 @media (max-width: 700px) {
   .cart-card {
-    padding: 18px 2vw 18px 2vw;
-    max-width: 99vw;
-    border-radius: 0;
-    margin-top: 18px;
+    padding: 16px 2vw; /* Adjusted from 18px, consistent vertical padding */
+    max-width: 99vw; /* Fine */
+    border-radius: 0; /* Fine */
+    margin-top: 16px; /* Adjusted from 18px */
   }
   .cart-table th, .cart-table td {
-    font-size: 0.97rem;
-    padding: 7px 3px;
+    font-size: 0.97rem; /* Fine */
+    padding: 8px 0px; /* Adjusted from 7px 3px, used 0 for horizontal as it is complex with image */
   }
   .cart-img {
-    width: 38px;
-    height: 38px;
+    width: 40px; /* Adjusted from 38px */
+    height: 40px; /* Adjusted from 38px */
   }
   .cart-actions {
     flex-direction: column;
     align-items: stretch;
-    gap: 8px;
+    gap: 8px; /* Fine */
   }
   .hide-mobile {
     display: none;

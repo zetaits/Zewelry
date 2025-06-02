@@ -124,7 +124,11 @@
 
             bottom.append(price, addBtn);
             info.append(title, desc, bottom);
-            card.append(img, info);
+
+            const imageWrapper = document.createElement('div');
+            imageWrapper.className = 'product-image-wrapper';
+            imageWrapper.appendChild(img);
+            card.append(imageWrapper, info);
 
             card.addEventListener('click', () => {
                 window.location.href = `product.html?id=${product.id}`;
