@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>View Cart - Zewelry</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Montserrat&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <header>
+    <a href="index.html" class="logo-link"><h1>Zewelry</h1></a>
+    <nav>
+      <a href="shop.html">Shop</a>
+    </nav>
+    <div style="display: flex; align-items: center;">
+      <button class="cart-btn" onclick="toggleCart()">
+        <img src="assets/cart.png" alt="Cart" style="width: 1.2em; height: 1.2em; vertical-align: middle;" />
+      </button>
+    </div>
+  </header>
+
+  <div id="cartContainer"></div>
+
+  <main>
+    <section class="cart-section">
+      <div class="cart-card">
+        <h2>Your Cart</h2>
+        <div class="cart-table-wrap">
+          <table class="cart-table" id="cartTable"></table>
+        </div>
+        <div class="cart-actions">
+          <button id="checkoutBtn" class="gothic-btn">Checkout</button>
+          <button class="gothic-btn secondary-btn" onclick="window.location.href='shop.html'">Continue Shopping</button>
+        </div>
+      </div>
+    </section>
+  </main>
+  <div id="footerContainer"></div>
+  <script src="main.js"></script>
+  <script src="products.js"></script>
+  <script>
+    fetch('footer.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('footerContainer').innerHTML = html;
+      });
+
+    function renderCartTable() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const table = document.getElementById('cartTable');
+      table.innerHTML = '';
+      let total = 0;
+
+      if (cart.length === 0) {
+        table.innerHTML = `<tr><td colspan="6" class="cart-empty-msg">Your cart is empty.</td></tr>`;
+        return;
+      }
+
+      table.innerHTML = `
+        <thead>
+          <tr>
+            <th></th>
+            <th>Product</th>
+            <th class="hide-mobile">Price</th>
+            <th style="text-align:center;">Quantity</th>
+            <th style="text-align:right;">Total</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      `;
+      const tbody = table.querySelector('tbody');
+
+      cart.forEach(item => {
+        total += item.price * item.quantity;
+        let imgSrc = '';
+        if (window.products) {
+          const prod = window.products.find(p => p.id === item.id);
+          imgSrc = prod && prod.images && prod.images[0] ? prod.images[0] : '';
+        }
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>
+            <img src="${imgSrc}" alt="${item.name}" class="cart-img">
+          </td>
+          <td>
+            <strong>${item.name}</strong>
+            <div class="cart-product-price-mobile">${item.price.toFixed(2)} €</div>
+          </td>
+          <td class="hide-mobile" style="text-align:center;">
+            ${item.price.toFixed(2)} €
+          </td>
+          <td style="text-align:center;">
+            <button class="cart-qty-btn" aria-label="Decrease quantity" onclick="changeQuantity(${item.id}, -1)">-</button>
+            <span class="cart-qty">${item.quantity}</span>
+            <button class="cart-qty-btn" aria-label="Increase quantity" onclick="changeQuantity(${item.id}, 1)">+</button>
+          </td>
+          <td style="text-align:right;">
+            ${(item.price * item.quantity).toFixed(2)} €
+          </td>
+          <td style="text-align:center;">
+            <button class="cart-remove-btn" aria-label="Remove" onclick="removeFromCart(${item.id});">&times;</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      const totalRow = document.createElement('tr');
+      totalRow.className = 'cart-total-row';
+      totalRow.innerHTML = `
+        <td colspan="3"></td>
+        <td colspan="3" style="text-align:right;font-weight:800;">Total: ${total.toFixed(2)} €</td>
+      `;
+      tbody.appendChild(totalRow);
+    }
+
+    function changeQuantity(id, delta) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const idx = cart.findIndex(item => item.id === id);
+      if (idx !== -1) {
+        cart[idx].quantity += delta;
+        if (cart[idx].quantity < 1) cart[idx].quantity = 1;
+        if (cart[idx].quantity > 99) cart[idx].quantity = 99;
+        localStorage.setItem('cart', JSON.stringify(cart));
+        if (window.cart) window.cart = cart;
+      }
+      if (typeof updateCartUI === 'function') updateCartUI();
+      renderCartTable();
+    }
+
+    function removeFromCart(id) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart = cart.filter(item => item.id !== id);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      if (window.cart) window.cart = cart;
+      if (typeof updateCartUI === 'function') updateCartUI();
+      renderCartTable();
+    }
+
+    window.addEventListener('DOMContentLoaded', renderCartTable);
+
+    document.getElementById('checkoutBtn').onclick = async function() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const cartItems = cart.map(item => ({
+        name: item.name,
+        price: item.price,
+        quantity: item.quantity,
+        image: (window.products && window.products.find(p => p.id === item.id)?.images?.[0]) || ''
+      }));
+      const res = await fetch('http://localhost:4242/api/stripe/create-checkout-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ cartItems })
+      });
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        alert('Error creating checkout session');
+      }
+    };
+  </script>
+</body>
+</html>

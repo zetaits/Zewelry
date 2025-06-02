@@ -1,0 +1,32 @@
+.main-footer {
+  background: var(--footer-bg);
+  color: var(--button-primary-hover-bg);
+  padding: 24px 0 18px 0;
+  text-align: center;
+  border-top: 1px solid var(--footer-border);
+  margin-top: 40px;
+  font-size: 1rem;
+  box-shadow: 0 -2px 12px rgba(0,0,0,0.4);
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-social a {
+  color: var(--accent);
+  text-decoration: none;
+  margin: 0 4px;
+  font-weight: 600;
+  transition: color 0.2s, text-shadow 0.2s;
+  text-shadow: 0 1px 6px #A8A8A820; /* New accent color with low alpha */
+}
+
+.footer-social a:hover {
+  color: var(--hover-glitch-color);
+  text-shadow: 0 0 4px var(--hover-glitch-color); /* Glitchy glow */
+}

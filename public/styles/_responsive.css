@@ -1,0 +1,126 @@
+@media (max-width: 768px) {
+  /* General responsive image rule */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Adjustments for gothic utility classes on mobile */
+  .gothic-landing, .gothic-cart-section, .gothic-success-section {
+    margin-top: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+    /* Note: .landing specific styles will override padding for that section */
+  }
+
+  .products-grid {
+    padding: 10px; /* Existing, verified */
+    gap: 10px; /* Existing, verified */
+    grid-template-columns: repeat(2, 1fr); /* Updated to 2-column layout for mobile */
+  }
+  .product-info {
+    padding: 8px; /* Padding kept for 2-column layout */
+    /* min-height: 100px; Removed to allow content to define height */
+  }
+
+  /* Product info text adjustments for 2-column layout */
+  .product-info h3 {
+    font-size: 0.9rem; /* Kept from previous mobile adjustment */
+    margin-bottom: 5px; /* Reduced from desktop's 10px */
+  }
+
+  .product-info p {
+    font-size: 0.8rem; /* Kept from previous mobile adjustment */
+    margin-bottom: 8px; /* Kept from previous mobile adjustment */
+    line-height: 1.3; /* Kept from previous mobile adjustment */
+    overflow: hidden; /* Added for line clamping */
+    text-overflow: ellipsis; /* Added for line clamping */
+    display: -webkit-box; /* Added for line clamping */
+    -webkit-line-clamp: 2; /* Show 2 lines */
+    -webkit-box-orient: vertical; /* Added for line clamping */
+    height: calc(0.8rem * 1.3 * 2); /* font-size * line-height * number of lines */
+  }
+
+  .product-card,
+  .gothic-product-card {
+    border-radius: 10px;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.45); /* Adjusted alpha for consistency */
+  }
+
+  /* Adjust product image height for mobile 2-column layout */
+  .product-card .product-image,
+  .gothic-product-card .product-image {
+    height: 160px; /* Changed from min-height: 140px for 2-column layout */
+    /* object-fit: cover; is expected to be inherited from _shop.css */
+  }
+
+  .details-btn,
+  .gothic-btn {
+    padding: 12px 18px; /* General rule, kept for other .gothic-btn uses */
+    font-size: 1rem; /* General rule, kept for other .gothic-btn uses */
+  }
+
+  /* Specific button styling for product cards in 2-column mobile layout */
+  .product-card .details-btn, 
+  .gothic-product-card .details-btn {
+    padding: 8px 10px; /* Kept from previous mobile adjustment */
+    font-size: 0.8rem; /* Kept from previous mobile adjustment */
+    margin-top: 10px; /* Kept from previous mobile adjustment */
+  }
+
+  /* Rules from _landing.css */
+  .landing {
+    padding: 32px 6vw;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .landing h2 {
+    font-size: 2rem; /* Reduced from 2.1rem for better mobile display */
+  }
+  .landing p {
+    font-size: 1.05rem;
+  }
+  .landing button { /* This rule replaces the previous .landing button rule */
+    width: 100%;
+    font-size: 1.1rem;
+    padding: 14px 0;
+    margin-top: 18px;
+  }
+  .main-footer {
+    font-size: 0.95rem; /* Existing, verified */
+    padding: 15px 0 10px 0; /* Updated padding */
+  }
+
+  .footer-content {
+    gap: 5px; /* Adjusted gap for mobile */
+  }
+
+  .footer-social a {
+    font-size: 0.9rem; /* Adjusted font size for social links */
+    margin: 0 4px; /* Kept existing margin as per instruction */
+  }
+
+  /* Header responsive styles */
+  header {
+    padding: 15px 20px;
+  }
+
+  header .logo-link h1 {
+    font-size: 1.5rem;
+  }
+
+  header nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  header nav a {
+    font-size: 1rem;
+    margin: 5px 0;
+  }
+
+  .cart-btn {
+    padding: 8px 10px;
+    font-size: 1.2rem;
+  }
+}

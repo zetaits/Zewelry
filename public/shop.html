@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Zewelry - Shop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Montserrat&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="main.css" />
+</head>
+
+<body>
+    <header>
+        <a href="index.html" class="logo-link">
+            <h1>Zewelry</h1>
+        </a>
+        <nav>
+            <a href="shop.html">Shop</a>
+        </nav>
+        <div style="display: flex; align-items: center;">
+            <button class="cart-btn" onclick="toggleCart()">
+                <img src="assets/cart.png" alt="Cart" style="width: 1.2em; height: 1.2em; vertical-align: middle;" />
+            </button>
+        </div>
+    </header>
+
+    <div id="cartContainer"></div>
+    <div id="notification" class="gothic-notification"></div>
+    <main>
+        <section class="products-grid gothic-products-grid" id="productsGrid">
+        </section>
+    </main>
+    <div id="footerContainer"></div>
+    <script src="main.js"></script>
+    <script>
+        fetch('footer.html')
+          .then(res => res.text())
+          .then(html => {
+            document.getElementById('footerContainer').innerHTML = html;
+          });
+
+        const products = [
+            {
+                id: 1,
+                name: 'Gothic Cross Ring',
+                description: 'Sterling silver ring with detailed cross design.',
+                price: 120.0,
+                images: ['assets/ring-1.png'],
+                details: 'Ring made of 925 sterling silver with polished finish and gothic relief details.'
+            },
+            {
+                id: 2,
+                name: 'Pentagram Necklace',
+                description: 'Elegant necklace with pentagram pendant in silver.',
+                price: 150.0,
+                images: ['assets/ring-2.png'],
+                details: 'Necklace with silver chain and pentagram pendant, matte finish and minimalist design.'
+            },
+            {
+                id: 3,
+                name: 'Leather and Silver Bracelet',
+                description: 'Bracelet combining black leather and silver details.',
+                price: 90.0,
+                images: ['assets/ring-3.png'],
+                details: 'Adjustable genuine leather bracelet with solid silver pieces.'
+            }
+        ];
+
+        function showNotification(msg) {
+            const notif = document.getElementById('notification');
+            notif.innerHTML = `<span style="font-size:1.1em;color:#6ee7b7;vertical-align:middle;margin-right:7px;">&#10003;</span>${msg}`;
+            notif.style.display = 'block';
+            notif.style.opacity = '1';
+            notif.style.pointerEvents = 'auto';
+            setTimeout(() => {
+                notif.style.opacity = '0';
+                notif.style.pointerEvents = 'none';
+                setTimeout(() => { notif.style.display = 'none'; }, 300);
+            }, 1000);
+        }
+
+        function createProductCard(product) {
+            const card = document.createElement('div');
+            card.className = 'product-card gothic-product-card';
+
+            const img = document.createElement('img');
+            img.className = 'product-image';
+            img.src = product.images[0];
+            img.alt = product.name;
+            img.onload = () => img.classList.add('loaded');
+            if (img.complete) img.classList.add('loaded');
+
+            const info = document.createElement('div');
+            info.className = 'product-info';
+
+            const title = document.createElement('h3');
+            title.textContent = product.name;
+
+            const desc = document.createElement('p');
+            desc.textContent = product.description;
+
+            // Agrupa precio y botón en un contenedor para pegarlos abajo
+            const bottom = document.createElement('div');
+            bottom.style.display = 'flex';
+            bottom.style.flexDirection = 'column';
+            bottom.style.gap = '8px';
+            bottom.style.marginTop = 'auto';
+
+            const price = document.createElement('div');
+            price.className = 'price';
+            price.textContent = product.price.toFixed(2) + ' €';
+
+            const addBtn = document.createElement('button');
+            addBtn.textContent = 'Add to Cart';
+            addBtn.className = 'details-btn gothic-btn';
+            addBtn.onclick = (e) => {
+                e.stopPropagation();
+                addToCart(product);
+                showNotification('Added to cart!');
+            };
+
+            bottom.append(price, addBtn);
+            info.append(title, desc, bottom);
+            card.append(img, info);
+
+            card.addEventListener('click', () => {
+                window.location.href = `product.html?id=${product.id}`;
+            });
+
+            return card;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const productsGrid = document.getElementById('productsGrid');
+            products.forEach(product => {
+                productsGrid.appendChild(createProductCard(product));
+            });
+        });
+    </script>
+</body>
+
+</html>
