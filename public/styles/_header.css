@@ -12,10 +12,10 @@ header h1 {
   font-family: var(--font-title);
   font-weight: 600;
   font-size: 2rem;
-  color: #eee;
+  color: var(--text-main);
 }
 nav a {
-  color: #ccc;
+  color: var(--text-muted);
   text-decoration: none;
   margin-right: 20px;
   font-weight: 600;
@@ -23,7 +23,7 @@ nav a {
   transition: color 0.3s;
 }
 nav a:hover {
-  color: var(--accent);
+  color: var(--hover-glitch-color);
 }
 .logo-link {
   text-decoration: none;

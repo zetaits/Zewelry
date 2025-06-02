@@ -10,23 +10,25 @@
 
 .product-card,
 .gothic-product-card {
-  background: var(--surface, #1e1c1f);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-backdrop-blur);
+  -webkit-backdrop-filter: var(--glass-backdrop-blur);
   border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.45);
-  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.5); /* Keep existing shadow, review if needed */
+  overflow: hidden; /* Important for backdrop-filter */
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  transition: transform 0.25s ease, box-shadow 0.3s ease;
-  border: 2px solid transparent;
+  transition: transform 0.25s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  border: 1px solid var(--glass-border-color);
   position: relative;
 }
 
 .product-card:hover,
 .gothic-product-card:hover {
   transform: translateY(-4px) rotate(-0.3deg);
-  box-shadow: 0 12px 48px rgba(178, 34, 34, 0.35), 0 3px 0 rgba(255, 255, 255, 0.15);
-  border-color: var(--accent);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--hover-glitch-color);
   z-index: 3;
 }
 
@@ -34,20 +36,44 @@
   width: 100%;
   height: 220px;
   object-fit: cover;
-  background-color: #191919;
+  background-color: var(--surface);
   filter: brightness(0.95) contrast(1.1);
   transition: filter 0.3s ease, opacity 0.4s;
   opacity: 0;
+  position: relative; /* For pseudo-element positioning */
+  overflow: hidden; /* To contain pseudo-element */
   /* Skeleton effect while loading */
-  background: linear-gradient(90deg, #232026 25%, #2d2933 50%, #232026 75%);
+  background: linear-gradient(90deg, var(--surface) 25%, var(--surface-light) 50%, var(--surface) 75%);
   background-size: 200% 100%;
   animation: img-skeleton 1.2s infinite linear;
+}
+
+.product-image::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(168, 168, 168, 0) 0%, /* var(--accent) - #A8A8A8 */
+    rgba(168, 168, 168, 0.2) 50%,
+    rgba(168, 168, 168, 0) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 1;
+}
+
+.product-image:hover::after {
+  opacity: 0.7;
 }
 
 .product-image.loaded {
   opacity: 1;
   animation: none;
-  background: #191919;
+  background: var(--surface);
 }
 
 @keyframes img-skeleton {
@@ -61,7 +87,7 @@
 
 .product-info {
   padding: 15px;
-  color: #cfcfcf;
+  color: var(--text-muted);
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
@@ -71,7 +97,7 @@
   font-family: var(--font-title);
   font-size: 1.2rem;
   margin-bottom: 8px;
-  color: #f2f2f2;
+  color: var(--text-main);
   letter-spacing: 0.5px;
   text-transform: uppercase;
 }
@@ -79,7 +105,7 @@
 .product-info p {
   font-size: 0.9rem;
   margin-bottom: 10px;
-  color: #999;
+  color: var(--text-muted);
   line-height: 1.3;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -99,8 +125,8 @@
 }
 
 .details-btn {
-  background: linear-gradient(90deg, var(--accent) 0%, var(--accent-dark) 100%);
-  color: #fff;
+  background: var(--button-primary-bg);
+  color: var(--button-primary-text);
   border: none;
   padding: 12px 24px;
   font-weight: 900;
@@ -110,7 +136,7 @@
   margin-top: 12px;
   align-self: flex-start;
   margin-bottom: 0;
-  box-shadow: 0 6px 32px rgba(178, 34, 34, 0.35), 0 2px 0 rgba(255, 255, 255, 0.1);
+  box-shadow: var(--shadow);
   transition: all 0.3s ease;
   letter-spacing: 1.4px;
   outline: none;
@@ -119,9 +145,9 @@
 }
 
 .details-btn:hover {
-  background: linear-gradient(90deg, var(--accent-dark) 20%, var(--accent) 80%);
+  background: var(--button-primary-hover-bg);
   transform: scale(1.06) translateY(-2px);
-  box-shadow: 0 10px 40px rgba(178, 34, 34, 0.45), 0 2px 0 rgba(255, 255, 255, 0.2);
+  box-shadow: var(--shadow-hover);
 }
 
 .details-btn:active {

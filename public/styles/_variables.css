@@ -1,20 +1,35 @@
 :root {
-  --main-bg: #18141c;
-  --main-fg: #ddd;
-  --accent: #b22222;
-  --accent-dark: #7f1515;
-  --header-bg: #000;
-  --header-border: #333;
-  --card-bg: #1a1a1a;
-  --footer-bg: #181818;
-  --footer-border: #222;
-  --radius: 8px;
-  --shadow: 0 4px 32px #000a, 0 1.5px 0 #b2222240;
-  --shadow-hover: 0 8px 32px #b2222270;
-  --font-main: 'Montserrat', sans-serif;
-  --font-title: 'Cinzel', serif;
-  --surface: #232026;
-  --surface-light: #2d2933;
-  --text-main: #eee;
-  --text-muted: #bbb;
+  --main-bg: #121212;
+  --main-fg: #E2E2E2;
+  --accent: #A8A8A8;
+  --accent-dark: #888888; /* Derived */
+  --header-bg: #121212;
+  --header-border: #252525; /* Slightly lighter than header-bg */
+  --card-bg: #1B1B1B;
+  --footer-bg: #121212;
+  --footer-border: #252525; /* Slightly lighter than footer-bg */
+  --radius: 8px; /* Kept existing */
+  --shadow: 0 4px 32px #00000080, 0 1.5px 0 #A8A8A840; /* Updated shadow */
+  --shadow-hover: 0 8px 32px #A8A8A870; /* Updated hover shadow */
+  --font-main: 'Montserrat', sans-serif; /* Kept existing */
+  --font-title: 'Cinzel', serif; /* Kept existing */
+  --surface: #1B1B1B;
+  --surface-light: #2C2C2C; /* Derived */
+  --text-main: #E2E2E2;
+  --text-muted: #B0B0B0; /* Derived */
+
+  /* New variables */
+  --button-primary-bg: #CCCCCC;
+  --button-primary-hover-bg: #72B7FF;
+  --button-primary-text: #121212;
+  --button-secondary-bg: #333333; /* Darker grey */
+  --button-secondary-hover-bg: #A8A8A8; /* Accent color for hover */
+  --button-secondary-text: #E2E2E2;
+  --hover-glitch-color: #8888FF;
+  --error-color: #5C2C2C;
+
+  /* Glassmorphism variables */
+  --glass-bg: rgba(27, 27, 27, 0.65); /* Derived from --card-bg / --surface #1B1B1B */
+  --glass-border-color: rgba(226, 226, 226, 0.1); /* Derived from --text-main #E2E2E2 */
+  --glass-backdrop-blur: blur(10px);
 }
