@@ -240,6 +240,7 @@
   cursor: pointer;
   border-radius: 4px;
   transition: background 0.2s, color 0.2s;
+  margin-left: 10px; /* Añadido: separa el botón del total */
 }
 .cart-remove-btn:hover {
   background: var(--accent);
@@ -325,7 +326,7 @@
   }
   .cart-table th, .cart-table td {
     font-size: 0.97rem;
-    padding: 7px 3px;
+    padding: 7px 1px; /* Reducir padding horizontal */
   }
   .cart-img {
     width: 38px;
@@ -341,5 +342,64 @@
   }
   .cart-product-price-mobile {
     display: block;
+  }
+  /* --- Fix botones cantidad en móvil --- */
+  .cart-table td[style*="text-align:center;"] {
+    white-space: nowrap;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .cart-qty-btn {
+    font-size: 1rem;
+    width: 22px;
+    height: 22px;
+    margin: 0 1px;
+  }
+  .cart-qty {
+    min-width: 22px;
+    font-size: 0.98rem;
+  }
+  /* --- Fix subtotal cell nowrap in mobile --- */
+  .cart-table td[style*="text-align:right;"] {
+    white-space: nowrap;
+  }
+}
+
+/* Toast notification for cart */
+.cart-toast {
+  position: fixed;
+  top: 32px;
+  right: 32px;
+  min-width: 180px;
+  max-width: 320px;
+  background: rgba(18,18,18,0.92);
+  color: #fff;
+  border: 1.5px solid #ccc;
+  border-radius: 8px;
+  padding: 14px 28px;
+  font-size: 1.08rem;
+  font-family: var(--font-title, Cinzel, serif);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.28);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transition: opacity 0.35s cubic-bezier(.4,0,.2,1), transform 0.35s cubic-bezier(.4,0,.2,1);
+  transform: translateY(-20px);
+  display: block;
+}
+.cart-toast.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+@media (max-width: 600px) {
+  .cart-toast {
+    right: 8px;
+    top: 8px;
+    padding: 10px 16px;
+    font-size: 1rem;
+    min-width: 120px;
+    max-width: 90vw;
   }
 }

@@ -24,7 +24,7 @@
   </header>
 
   <div id="cartContainer"></div>
-
+  <div id="cartToast" class="cart-toast"></div>
   <main>
     <section class="product-detail-container">
       <div class="product-detail-gallery">
@@ -160,6 +160,7 @@
 
       document.getElementById('addToCartBtn').addEventListener('click', () => {
         addToCart(product);
+        showNotification('Added to cart');
         toggleCart();
       });
 
@@ -182,6 +183,16 @@
       });
     } else {
       document.querySelector('.product-detail-container').innerHTML = '<p>Producto no encontrado.</p>';
+    }
+
+    function showNotification(msg) {
+      const toast = document.getElementById('cartToast');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(toast._timeout);
+      toast._timeout = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2200);
     }
   </script>
 </body>

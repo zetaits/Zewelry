@@ -4,7 +4,7 @@
   padding: 24px 0 18px 0;
   text-align: center;
   border-top: 1px solid var(--footer-border);
-  margin-top: 40px;
+  margin-top: 0; /* Cambiado de 40px a 0 para evitar separación extra */
   font-size: 1rem;
   box-shadow: 0 -2px 12px rgba(0,0,0,0.4);
 }

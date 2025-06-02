@@ -23,4 +23,13 @@ window.products = [
     images: ['assets/ring-3.png', 'assets/ring-1.png', 'assets/ring-1.png'],
     details: 'Adjustable genuine leather bracelet with solid silver pieces.'
   }
+  ,
+  {
+    id: 4,
+    name: 'Leather and Silver Bracelet',
+    description: 'Bracelet combining black leather and silver details.',
+    price: 90.0,
+    images: ['assets/ring-3.png', 'assets/ring-1.png', 'assets/ring-1.png'],
+    details: 'Adjustable genuine leather bracelet with solid silver pieces.'
+  }
 ];

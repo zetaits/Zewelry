@@ -1,7 +1,7 @@
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
   padding: 60px 40px;
   background-color: var(--main-bg);
   min-height: 80vh;
@@ -14,10 +14,11 @@
   backdrop-filter: var(--glass-backdrop-blur);
   -webkit-backdrop-filter: var(--glass-backdrop-blur);
   border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.5); /* Keep existing shadow, review if needed */
-  overflow: hidden; /* Important for backdrop-filter */
+  box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+  overflow: hidden;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   cursor: pointer;
   transition: transform 0.25s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   border: 1px solid var(--glass-border-color);
@@ -35,15 +36,14 @@
 
 .product-image {
   width: 100%;
-  height: 220px;
+  aspect-ratio: 1/1;
   object-fit: cover;
   background-color: var(--surface);
   filter: brightness(0.95) contrast(1.1);
   transition: filter 0.3s ease, opacity 0.4s;
   opacity: 0;
-  position: relative; /* For pseudo-element positioning */
-  overflow: hidden; /* To contain pseudo-element */
-  /* Skeleton effect while loading */
+  position: relative;
+  overflow: hidden;
   background: linear-gradient(90deg, var(--surface) 25%, var(--surface-light) 50%, var(--surface) 75%);
   background-size: 200% 100%;
   animation: img-skeleton 1.2s infinite linear;
@@ -58,7 +58,7 @@
   height: 100%;
   background: linear-gradient(
     180deg,
-    rgba(168, 168, 168, 0) 0%, /* var(--accent) - #A8A8A8 */
+    rgba(168, 168, 168, 0) 0%,
     rgba(168, 168, 168, 0.2) 50%,
     rgba(168, 168, 168, 0) 100%
   );

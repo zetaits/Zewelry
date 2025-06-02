@@ -89,6 +89,7 @@
   .main-footer {
     font-size: 0.95rem; /* Existing, verified */
     padding: 15px 0 10px 0; /* Updated padding */
+    margin-top: 0; /* Asegura que no haya separación extra en móvil */
   }
 
   .footer-content {

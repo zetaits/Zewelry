@@ -45,7 +45,7 @@ function toggleCart() {
   if (modal) modal.classList.remove('active');
 }
 
-function addToCart(product) {
+function addToCart(product, onAdd) {
   const existing = cart.find(item => item.id === product.id);
   if (existing) {
     existing.quantity++;
@@ -56,6 +56,7 @@ function addToCart(product) {
   }
   saveCart();
   updateCartUI();
+  if (typeof onAdd === 'function') onAdd();
 }
 
 function saveCart() {

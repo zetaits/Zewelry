@@ -26,29 +26,30 @@
 
   <div id="cartContainer"></div>
 
-  <section class="hero-3d-brutalist">
-    <div class="hero-3d-content">
-      <div class="hero-3d-cube">
-        <model-viewer
-          src="assets/cube.glb"
-          alt="Zewelry 3D Cube"
-          camera-controls
-          auto-rotate
-          shadow-intensity="1"
-          exposure="1"
-          style="width: 340px; height: 340px; background: transparent;"
-          disable-zoom
-          disable-pan
-        ></model-viewer>
+  <main>
+    <section class="hero-3d-brutalist">
+      <div class="hero-3d-content">
+        <div class="hero-3d-cube">
+          <model-viewer
+            src="assets/cube.glb"
+            alt="Zewelry 3D Cube"
+            camera-controls
+            auto-rotate
+            shadow-intensity="1"
+            exposure="1"
+            style="width: 340px; height: 340px; background: transparent;"
+            disable-zoom
+            disable-pan
+          ></model-viewer>
+        </div>
+        <div class="hero-3d-text">
+          <h2>Refined Darkness</h2>
+          <p>Luxury gothic jewelry forged for unique souls</p>
+          <button class="gothic-btn" onclick="location.href='shop.html'">Discover Zewelry</button>
+        </div>
       </div>
-      <div class="hero-3d-text">
-        <h2>Refined Darkness</h2>
-        <p>Luxury gothic jewelry forged for unique souls</p>
-        <button class="gothic-btn" onclick="location.href='shop.html'">Discover Zewelry</button>
-      </div>
-    </div>
-  </section>
-
+    </section>
+  </main>
   <div id="footerContainer"></div>
   <script src="main.js"></script>
   <script>
