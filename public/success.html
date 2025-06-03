@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Montserrat&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
   <header>
@@ -49,10 +49,10 @@
   </section>
 
   <div id="footerContainer"></div>
-  <script src="main.js"></script>
+  <script type="module" src="js/app.js"></script>
   <script>
     localStorage.removeItem('cart');
-    fetch('footer.html')
+    fetch('/partials/footer.html')
       .then(res => res.text())
       .then(html => {
         document.getElementById('footerContainer').innerHTML = html;
