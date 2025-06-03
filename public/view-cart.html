@@ -16,13 +16,31 @@
       <a href="shop.html">Shop</a>
     </nav>
     <div style="display: flex; align-items: center;">
-      <button class="cart-btn" onclick="toggleCart()">
+      <button class="cart-btn">
         <img src="assets/cart.png" alt="Cart" style="width: 1.2em; height: 1.2em; vertical-align: middle;" />
       </button>
     </div>
   </header>
 
   <div id="cartContainer"></div>
+  <div id="cartDrawerOverlay" class="cart-drawer-overlay"></div>
+  <div id="cartDrawer" class="cart-drawer">
+    <div class="cart-drawer-header">
+      <span class="cart-drawer-title">Cart</span>
+      <button class="cart-drawer-close-btn" aria-label="Close cart">&times;</button>
+    </div>
+    <div class="cart-drawer-items" id="cartDrawerItems"></div>
+    <div class="cart-drawer-footer">
+      <div class="cart-drawer-total-row">
+        <span class="cart-drawer-total-label">Total</span>
+        <span class="cart-drawer-total-value" id="cartDrawerTotal"></span>
+      </div>
+      <div class="cart-drawer-actions">
+        <button class="cart-drawer-btn" id="cartDrawerCheckoutBtn">Checkout</button>
+        <button class="cart-drawer-btn secondary" onclick="window.location.href='view-cart.html'">View cart</button>
+      </div>
+    </div>
+  </div>
 
   <main>
     <section class="cart-section">
