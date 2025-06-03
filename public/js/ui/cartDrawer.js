@@ -49,16 +49,9 @@ export function renderCartDrawer() {
       tooltip = item.name;
     }
 
-    let imgSrc = item.images && item.images[0] ? item.images[0] : '';
-    // Adjust path if necessary, assuming assets are relative to root.
-    // Modules in js/ui/ need to go up two levels for root assets.
-    if (imgSrc && !imgSrc.startsWith('/')) { // If not already root relative
-        if (imgSrc.startsWith('assets/')) {
-             imgSrc = '../../' + imgSrc; // from public/js/ui/ to public/ then assets/
-        } else {
-            // Fallback for unknown relative paths, may need adjustment
-             imgSrc = '../../assets/' + imgSrc;
-        }
+    let imgSrc = item.images && item.images[0] ? item.images[0] : 'assets/default-placeholder.png'; // Provide a fallback
+    if (imgSrc && !imgSrc.startsWith('/')) {
+      imgSrc = '/' + imgSrc;
     }
 
 
