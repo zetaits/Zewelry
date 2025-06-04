@@ -20,7 +20,7 @@
   justify-content: center;
   gap: 60px;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1600px;
   padding: 60px 5vw 60px 5vw;
 }
 
@@ -29,22 +29,27 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--surface);
-  border-radius: 32px;
-  box-shadow: 0 12px 64px rgba(0,0,0,0.7), 0 2px 0 #A8A8A840; /* New accent shadow light */
-  padding: 32px;
-  border: 3px solid var(--accent);
-  min-width: 340px;
-  min-height: 340px;
-  transition: box-shadow 0.3s;
+  /* Brutalismo: sin fondo, sin borde, sin sombra */
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  border: none;
+  /* Mucho más grande en desktop */
+  min-width: 520px;
+  min-height: 520px;
+  transition: none;
 }
 
 .hero-3d-cube model-viewer {
-  width: 340px !important;
-  height: 340px !important;
-  border-radius: 18px;
+  width: 520px !important;
+  height: 520px !important;
+  border-radius: 0;
   background: transparent;
   box-shadow: none;
+  /* Un poco de margen para que no toque el borde */
+  margin: 0 0 0 0;
+  display: block;
 }
 
 .hero-3d-text {
@@ -53,24 +58,24 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  padding-left: 36px;
+  padding-left: 48px;
   max-width: 540px;
 }
 
 .hero-3d-text h2 {
   font-family: var(--font-title, 'Cinzel', serif);
-  font-size: 3.8rem;
+  font-size: 4.2rem;
   color: var(--text-main);
   letter-spacing: 2px;
   margin-bottom: 18px;
-  text-shadow: 0 6px 32px rgba(0,0,0,0.6), 0 2px 0 #A8A8A840; /* New accent shadow light */
+  text-shadow: 0 6px 32px rgba(0,0,0,0.6), 0 2px 0 #A8A8A840;
   line-height: 1.1;
   text-transform: uppercase;
   font-weight: 900;
 }
 
 .hero-3d-text p {
-  font-size: 1.45rem;
+  font-size: 1.55rem;
   color: var(--text-muted);
   margin-bottom: 38px;
   max-width: 420px;
@@ -79,8 +84,6 @@
   text-shadow: 0 2px 8px rgba(0,0,0,0.6);
 }
 
-/* .gothic-btn rules from _base.css will apply for background and color */
-/* Explicit box-shadow here will override the one from _base.css for .gothic-btn */
 .hero-3d-text .gothic-btn {
   font-size: 1.35rem;
   padding: 20px 54px;
@@ -88,33 +91,38 @@
   margin-top: 0;
   font-weight: 900;
   letter-spacing: 2px;
-  box-shadow: var(--shadow); /* Uses new shadow variable */
-  /* background already handled by .gothic-btn in _base.css */
+  box-shadow: var(--shadow);
   text-transform: uppercase;
 }
 
-/* hover rules from _base.css will apply for background */
-/* Explicit box-shadow here will override the one from _base.css for .gothic-btn:hover */
 .hero-3d-text .gothic-btn:hover {
-  /* background already handled by .gothic-btn:hover in _base.css */
-  box-shadow: var(--shadow-hover); /* Uses new shadow-hover variable */
+  box-shadow: var(--shadow-hover);
   transform: scale(1.06) translateY(-2px);
 }
 
-@media (max-width: 900px) {
+.hero-3d-text .hero-3d-subtext {
+  margin-top: 18px;
+  color: var(--text-muted);
+  font-size: 1.02rem;
+  letter-spacing: 0.03em;
+  opacity: 0.85;
+  text-align: center;
+  width: 100%;
+}
+
+/* Responsive: tablet */
+@media (max-width: 1100px) {
   .hero-3d-content {
-    flex-direction: column;
     gap: 32px;
     padding: 40px 2vw 40px 2vw;
   }
   .hero-3d-cube {
-    min-width: 220px;
-    min-height: 220px;
-    padding: 18px;
+    min-width: 340px;
+    min-height: 340px;
   }
   .hero-3d-cube model-viewer {
-    width: 220px !important;
-    height: 220px !important;
+    width: 340px !important;
+    height: 340px !important;
   }
   .hero-3d-text {
     padding-left: 0;
@@ -123,7 +131,7 @@
     max-width: 98vw;
   }
   .hero-3d-text h2 {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
   }
   .hero-3d-text p {
     font-size: 1.1rem;
@@ -134,37 +142,52 @@
   }
 }
 
-@media (max-width: 600px) {
+/* Responsive: mobile */
+@media (max-width: 700px) {
   .hero-3d-brutalist {
-    min-height: 50vh;
-    border-radius: 0;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.6);
+    min-height: unset;
+    padding-top: 0;
+    margin-top: 0;
+    padding-bottom: 32vw; /* Añade espacio inferior para balancear */
   }
   .hero-3d-content {
-    padding: 18px 0 18px 0;
-    gap: 18px;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 0 0 0;
+    margin-top: 0;
   }
   .hero-3d-cube {
-    min-width: 140px;
-    min-height: 140px;
-    padding: 6px;
-    border-radius: 18px;
+    min-width: 98vw;
+    min-height: 70vw; /* Más alto en móvil */
+    justify-content: center;
+    margin-top: 0;
+    margin-bottom: 0;
   }
   .hero-3d-cube model-viewer {
-    width: 140px !important;
-    height: 140px !important;
+    width: 98vw !important;
+    height: 70vw !important;
+    max-width: 98vw;
+    max-height: 80vw;
+    margin-top: 0;
   }
-  .hero-3d-text h2 {
-    font-size: 1.3rem;
-    margin-bottom: 10px;
+  .hero-3d-text {
+    padding-left: 0;
+    align-items: center;
+    text-align: center;
+    max-width: 98vw;
+    margin-top: 0;
   }
-  .hero-3d-text p {
-    font-size: 0.95rem;
-    margin-bottom: 18px;
+  .hero-3d-text{
+    font-size: 0.97rem;
+    margin-top: 14px;
+    margin-bottom: 0;
   }
-  .hero-3d-text .gothic-btn {
-    font-size: 0.95rem;
-    padding: 10px 18px;
-    border-radius: 8px;
+}
+
+/* Responsive: very small screens */
+@media (max-width: 400px) {
+  .hero-3d-cube model-viewer {
+    width: 98vw !important;
+    height: 54vw !important;
   }
 }
