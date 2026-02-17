@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,6 +11,7 @@
   <link rel="stylesheet" href="/css/main.css">
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
+
 <body>
   <div id="headerContainer"></div>
   <div id="cartContainer"></div>
@@ -36,22 +38,83 @@
     <section class="hero-3d-brutalist">
       <div class="hero-3d-content">
         <div class="hero-3d-cube">
-          <model-viewer
-            src="assets/M8 Xlpha.glb"
-            alt="Zewelry 3D Model"
-            camera-controls
-            auto-rotate
-            shadow-intensity="1"
-            exposure="1"
-            disable-zoom
-            disable-pan
-          ></model-viewer>
+          <model-viewer src="assets/M8 Xlpha.glb" alt="Zewelry 3D Model" camera-controls auto-rotate
+            shadow-intensity="1" exposure="1" disable-zoom disable-pan></model-viewer>
         </div>
         <div class="hero-3d-text">
           <h2>Refined Darkness</h2>
           <p>Luxury gothic jewelry forged for unique souls</p>
           <button class="gothic-btn" onclick="location.href='shop.html'">Discover Zewelry</button>
         </div>
+      </div>
+    </section>
+
+    <!-- Section 1: Featured Products -->
+    <section class="featured-products-section">
+      <div class="section-header">
+        <h2>Forged in Darkness</h2>
+        <p>Our most coveted artifacts, created for the bold.</p>
+      </div>
+      <div class="featured-carousel" id="featuredCarousel">
+        <!-- Products injected by JS or static for now -->
+        <div class="featured-product-card" onclick="location.href='product.html?id=1'">
+          <img src="assets/ring-1.png" alt="Gothic Ring">
+          <div class="fp-info">
+            <h3>Gothic Cross Ring</h3>
+            <span>$120.00</span>
+          </div>
+        </div>
+        <div class="featured-product-card" onclick="location.href='product.html?id=2'">
+          <img src="assets/ring-2.png" alt="Pentagram Necklace">
+          <div class="fp-info">
+            <h3>Pentagram Necklace</h3>
+            <span>$150.00</span>
+          </div>
+        </div>
+        <div class="featured-product-card" onclick="location.href='product.html?id=3'">
+          <img src="assets/ring-3.png" alt="Leather Bracelet">
+          <div class="fp-info">
+            <h3>Leather Bracelet</h3>
+            <span>$90.00</span>
+          </div>
+        </div>
+      </div>
+      <div class="section-footer">
+        <button class="gothic-btn secondary" onclick="location.href='shop.html'">View All Creations</button>
+      </div>
+    </section>
+
+    <!-- Section 2: The Craft / Manifesto -->
+    <section class="manifesto-section">
+      <div class="manifesto-content">
+        <div class="manifesto-text">
+          <h2>The Craft</h2>
+          <p>
+            We do not simply make jewelry. We forge symbols of power.
+            born from the shadows and refined by the light of the moon.
+            Each piece is a testament to individuality, a rebellion against
+            the ordinary.
+          </p>
+          <p>
+            Embrace your darkness. Wear your truth.
+          </p>
+        </div>
+        <div class="manifesto-image">
+          <!-- Placeholder for atmospheric image -->
+          <div class="atmospheric-placeholder"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: The Coven / Newsletter -->
+    <section class="newsletter-section">
+      <div class="newsletter-container">
+        <h2>Join The Coven</h2>
+        <p>Subscribe for exclusive drops, dark rituals, and member-only artifacts.</p>
+        <form class="newsletter-form" onsubmit="event.preventDefault();">
+          <input type="email" placeholder="Enter your email..." required>
+          <button type="submit">Summon</button>
+        </form>
       </div>
     </section>
   </main>
@@ -70,4 +133,5 @@
       });
   </script>
 </body>
+
 </html>

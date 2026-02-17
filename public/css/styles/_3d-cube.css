@@ -1,16 +1,28 @@
 .hero-3d-brutalist {
   width: 100vw;
   min-height: 70vh;
-  background: linear-gradient(120deg, var(--main-bg) 60%, var(--surface) 100%);
+  background: radial-gradient(circle at center, var(--surface) 0%, var(--main-bg) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 8px 64px rgba(0,0,0,0.75);
-  border-bottom: 4px solid var(--accent-dark);
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.8);
+  border-bottom: 1px solid var(--accent-dark);
   margin-bottom: 0;
   z-index: 2;
+}
+
+.hero-3d-brutalist::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+  opacity: 0.4;
+  pointer-events: none;
 }
 
 .hero-3d-content {
@@ -64,14 +76,14 @@
 
 .hero-3d-text h2 {
   font-family: var(--font-title, 'Cinzel', serif);
-  font-size: 4.2rem;
+  font-size: 4.5rem;
   color: var(--text-main);
-  letter-spacing: 2px;
-  margin-bottom: 18px;
-  text-shadow: 0 6px 32px rgba(0,0,0,0.6), 0 2px 0 #A8A8A840;
+  letter-spacing: 4px;
+  margin-bottom: 24px;
+  text-shadow: 0 0 30px rgba(150, 0, 24, 0.4);
   line-height: 1.1;
   text-transform: uppercase;
-  font-weight: 900;
+  font-weight: 800;
 }
 
 .hero-3d-text p {
@@ -81,23 +93,24 @@
   max-width: 420px;
   line-height: 1.6;
   font-family: var(--font-main, 'Montserrat', sans-serif);
-  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
 }
 
 .hero-3d-text .gothic-btn {
-  font-size: 1.35rem;
-  padding: 20px 54px;
-  border-radius: 14px;
-  margin-top: 0;
-  font-weight: 900;
-  letter-spacing: 2px;
-  box-shadow: var(--shadow);
+  font-size: 1.1rem;
+  padding: 18px 48px;
+  border-radius: 4px;
+  /* Match new sharper look */
+  margin-top: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  box-shadow: 0 10px 40px rgba(150, 0, 24, 0.3);
   text-transform: uppercase;
 }
 
 .hero-3d-text .gothic-btn:hover {
-  box-shadow: var(--shadow-hover);
-  transform: scale(1.06) translateY(-2px);
+  box-shadow: 0 15px 50px rgba(150, 0, 24, 0.5);
+  transform: translateY(-4px);
 }
 
 .hero-3d-text .hero-3d-subtext {
@@ -116,26 +129,32 @@
     gap: 32px;
     padding: 40px 2vw 40px 2vw;
   }
+
   .hero-3d-cube {
     min-width: 340px;
     min-height: 340px;
   }
+
   .hero-3d-cube model-viewer {
     width: 340px !important;
     height: 340px !important;
   }
+
   .hero-3d-text {
     padding-left: 0;
     align-items: center;
     text-align: center;
     max-width: 98vw;
   }
+
   .hero-3d-text h2 {
     font-size: 2.5rem;
   }
+
   .hero-3d-text p {
     font-size: 1.1rem;
   }
+
   .hero-3d-text .gothic-btn {
     font-size: 1.1rem;
     padding: 14px 28px;
@@ -148,21 +167,26 @@
     min-height: unset;
     padding-top: 0;
     margin-top: 0;
-    padding-bottom: 32vw; /* Añade espacio inferior para balancear */
+    padding-bottom: 32vw;
+    /* Añade espacio inferior para balancear */
   }
+
   .hero-3d-content {
     flex-direction: column;
     gap: 10px;
     padding: 0 0 0 0;
     margin-top: 0;
   }
+
   .hero-3d-cube {
     min-width: 98vw;
-    min-height: 70vw; /* Más alto en móvil */
+    min-height: 70vw;
+    /* Más alto en móvil */
     justify-content: center;
     margin-top: 0;
     margin-bottom: 0;
   }
+
   .hero-3d-cube model-viewer {
     width: 98vw !important;
     height: 70vw !important;
@@ -170,6 +194,7 @@
     max-height: 80vw;
     margin-top: 0;
   }
+
   .hero-3d-text {
     padding-left: 0;
     align-items: center;
@@ -177,7 +202,8 @@
     max-width: 98vw;
     margin-top: 0;
   }
-  .hero-3d-text{
+
+  .hero-3d-text {
     font-size: 0.97rem;
     margin-top: 14px;
     margin-bottom: 0;

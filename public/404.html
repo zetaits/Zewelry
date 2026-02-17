@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zewelry | Page Not Found</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Montserrat:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <script type="module" src="js/app.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1><a href="index.html" style="text-decoration:none; color:inherit;">ZEWELRY</a></h1>
+        <nav>
+            <a href="shop.html">Shop</a>
+            <a href="view-cart.html" id="cartLink">Cart <span id="cartCountBadge" class="cart-badge">0</span></a>
+        </nav>
+    </header>
+
+    <main style="align-items: center; justify-content: center; min-height: 60vh;">
+        <section class="gothic-landing" style="text-align: center; max-width: 600px; padding: 60px 20px;">
+            <h2 style="font-size: 8rem; line-height: 1; margin-bottom: 0; color: var(--accent); opacity: 0.8;">404</h2>
+            <h3 style="font-family: var(--font-title); font-size: 2rem; margin-bottom: 24px;">Page Not Found</h3>
+            <p>The artifact you seek does not exist within this realm.</p>
+            <button class="gothic-btn" onclick="location.href='index.html'">Return Home</button>
+        </section>
+    </main>
+
+    <div id="footerContainer"></div>
+    <div id="cartDrawerContainer"></div>
+
+    <script type="module">
+        import { loadHeaderFooter } from './js/utils/loadHeaderFooter.js';
+        document.addEventListener('DOMContentLoaded', () => {
+            // Footer/Header loading is partly manual here for simplicity or via utils
+            // Since header is hardcoded above, just footer might need loading or simple static footer 
+            // For now, let's rely on app.js which might handle some, but app.js usually expects existing elements.
+        });
+    </script>
+    <!-- Load Footer/Drawer dynamically if app.js handles it, otherwise simple manual include like success.html -->
+    <script>
+        // Simple footer loader if not handled by app.js universally
+        fetch('partials/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footerContainer').innerHTML = data;
+            });
+        fetch('partials/cart-drawer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('cartDrawerContainer').innerHTML = data;
+            });
+    </script>
+</body>
+
+</html>

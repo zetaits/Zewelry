@@ -1,35 +1,59 @@
 :root {
-  --main-bg: #121212;
-  --main-fg: #E2E2E2;
-  --accent: #A8A8A8;
-  --accent-dark: #888888; /* Derived */
-  --header-bg: #121212;
-  --header-border: #252525; /* Slightly lighter than header-bg */
-  --card-bg: #1B1B1B;
-  --footer-bg: #121212;
-  --footer-border: #252525; /* Slightly lighter than footer-bg */
-  --radius: 8px; /* Kept existing */
-  --shadow: 0 4px 32px #00000080, 0 1.5px 0 #A8A8A840; /* Updated shadow */
-  --shadow-hover: 0 8px 32px #A8A8A870; /* Updated hover shadow */
-  --font-main: 'Montserrat', sans-serif; /* Kept existing */
-  --font-title: 'Cinzel', serif; /* Kept existing */
-  --surface: #1B1B1B;
-  --surface-light: #2C2C2C; /* Derived */
-  --text-main: #E2E2E2;
-  --text-muted: #B0B0B0; /* Derived */
+  /* --- Luxury Gothic Palette --- */
+  --main-bg: #050505;
+  /* Deepest Black */
+  --main-fg: #E0E0E0;
+  /* Soft White */
+  --text-main: var(--main-fg);
+  /* Alias for legacy support */
+  --text-muted: #A0A0A0;
+  /* Muted Text */
 
-  /* New variables */
-  --button-primary-bg: #CCCCCC;
-  --button-primary-hover-bg: #72B7FF;
-  --button-primary-text: #121212;
-  --button-secondary-bg: #333333; /* Darker grey */
-  --button-secondary-hover-bg: #A8A8A8; /* Accent color for hover */
-  --button-secondary-text: #E2E2E2;
-  --hover-glitch-color: #8888FF;
-  --error-color: #5C2C2C;
+  /* Primary Accent: Deep Crimson / Blood Red */
+  --accent: #960018;
+  --accent-light: #C41E3A;
+  --accent-dark: #58000D;
+  --accent-glow: rgba(150, 0, 24, 0.4);
 
-  /* Glassmorphism variables */
-  --glass-bg: rgba(27, 27, 27, 0.65); /* Derived from --card-bg / --surface #1B1B1B */
-  --glass-border-color: rgba(226, 226, 226, 0.1); /* Derived from --text-main #E2E2E2 */
-  --glass-backdrop-blur: blur(10px);
+  /* Surface Colors */
+  --surface: #0F0F0F;
+  --surface-light: #1A1A1A;
+  --surface-border: #333333;
+
+  /* Header & Footer */
+  --header-bg: rgba(5, 5, 5, 0.85);
+  /* Glassmorphism base */
+  --header-border: rgba(255, 255, 255, 0.08);
+  --footer-bg: #020202;
+  --footer-border: #1A1A1A;
+
+  /* UI Elements */
+  --card-bg: rgba(20, 20, 20, 0.6);
+  --radius: 4px;
+  /* Sharper, more gothic edges */
+  --shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.8);
+  --shadow-hover: 0 20px 50px -10px rgba(150, 0, 24, 0.15);
+  /* Red glow on hover */
+
+  /* Typography */
+  --font-main: 'Montserrat', sans-serif;
+  --font-title: 'Cinzel', serif;
+
+  /* Buttons */
+  --button-primary-bg: #960018;
+  --button-primary-hover-bg: #B3001B;
+  --button-primary-text: #FFFFFF;
+
+  --button-secondary-bg: transparent;
+  --button-secondary-hover-bg: rgba(255, 255, 255, 0.05);
+  --button-secondary-text: #E0E0E0;
+
+  /* Utilities */
+  --hover-glitch-color: #FF0033;
+  --error-color: #8B0000;
+
+  /* Glassmorphism */
+  --glass-bg: rgba(15, 15, 15, 0.7);
+  --glass-border-color: rgba(255, 255, 255, 0.08);
+  --glass-backdrop-blur: blur(12px);
 }

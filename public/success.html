@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,9 +10,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Montserrat&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/main.css">
 </head>
+
 <body>
   <header>
-    <a href="index.html" class="logo-link"><h1>Zewelry</h1></a>
+    <a href="index.html" class="logo-link">
+      <h1>Zewelry</h1>
+    </a>
     <nav>
       <a href="shop.html">Shop</a>
     </nav>
@@ -42,10 +46,16 @@
     </div>
   </div>
 
-  <section class="landing gothic-success-section" style="text-align:center; margin-top:60px;">
-    <h2>Thank you for your purchase!</h2>
-    <p>Your payment was successful.</p>
-    <button class="gothic-btn" onclick="location.href='shop.html'">Continue Shopping</button>
+  <section class="landing gothic-success-section" style="text-align:center; margin-top:100px;">
+    <div class="success-icon">
+      <svg viewBox="0 0 24 24" width="80" height="80" fill="none" stroke="var(--accent)" stroke-width="1.5">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M22 4L12 14.01l-3-3" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </div>
+    <h2>Order Confirmed</h2>
+    <p>Your artifacts are being prepared for dispatch.</p>
+    <button class="gothic-btn" onclick="location.href='shop.html'">Return to Shop</button>
   </section>
 
   <div id="footerContainer"></div>
@@ -59,4 +69,5 @@
       });
   </script>
 </body>
+
 </html>
